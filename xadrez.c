@@ -1,59 +1,77 @@
 #include <stdio.h>
 
 // Desafio de Xadrez - MateCheck
+
+// Função recursiva para mover a Torre
+void moverTorre(int casas, char* direcao) {
+  if(casas > 0) {
+    printf("%s\n", direcao);
+    moverTorre(casas - 1, direcao);
+  }
+}
+
+// Função recursiva para mover o Bispo
+void moverBispo(int casas, char* direcao1, char* direcao2){
+  if(casas > 0 ) {
+    printf("%s, %s\n", direcao1, direcao2);
+  }
+}
+
+//Função para mover o Bispo usando loops aninhados
+void moverBispoLoops(int casas) {
+  for (int i = 0; i < casas; i++) {
+    for (int j = 0; j < 1; j++) {
+      printf("Cima, Direita\n");
+    }
+  }
+}
+
+// Função recursiva para mover a Rainha
+void moverRainha(int casas, char* direcao) {
+  if (casas > 0) {
+    printf("%s\n", direcao);
+    moverRainha(casas - 1, direcao);
+  }
+}
+
+//Função para mover o Cavalo usando loops aninhados
+void moverCavalo(int movimentoVertical, int movimentoHorizontal){
+  for (int i = 0, j = 0; i < movimentoVertical && j < movimentoHorizontal;) {
+    printf ("Cima\n");
+    printf("Cima\n");
+    printf("Direita\n");
+    i++;
+    j++;
+  }
+}
+
 int main() {
-    // Nível Novato - Movimentação das Peças
-  //Movimento da Torre (5x a direita)
+  // Movimentação das Peças
+  // Movimento da Torre (5x a direita)
 
   printf("MOVIMENTO DA TORRE:\n");
-
-  for(int i = 0; i < 5; i++){
-    printf("Direita\n"); //imprime a direção do movimento
-  }
+  moverTorre(5, "Direita"); 
   printf("\n"); //imprime uma linha em branco
 
-  //Movimento do Bispo (diagonal para cima e para direita)
+  // Movimento do Bispo (diagonal para cima e direita)
   printf("MOVIMENTO DO BISPO \n");
-  int casasBispo = 5;
-  int contador1 = 0;
-  while (contador1 < casasBispo) {
-    printf("Cima, Direita\n"); //imprime a direção do movimento
-    contador1++;
-  }
+  moverBispo(5, "Cima", "Direita"); 
   printf("\n");
 
-//Movimento da Rainha (horizontal para a esqueda)
-printf("MOVIMENTO DA RAINHA\n");
-int casasRainha = 8;
-int contador2 = 0;
+  // Movimento do Bispo (loops aninhados 5x para cima e direita)
+  printf("Movimenti do Bispo (Loops Aninhados):\n");
+  moverBispoLoops(5);
+  printf("\n");
 
-do{
-printf("Esquerda\n"); //imprime a direção do movimento
-contador2++;
-}while(contador2 < casasRainha);
+//Movimento da Rainha (8x para a esqueda)
+printf("MOVIMENTO DA RAINHA\n");
+moverRainha(8, "Esquerda");
 printf("\n");
 
 // Movimento do Cavalo (cima a esquerda)
-printf("MOVIMENTO DO CAVALO \n");
-int movimentoCimaCavalo = 2;
-int movimentoEsquerdaCavalo = 1;
-int contador3 = 0;
-
-//Loop for para o movimento vertical (duas casas para cima)
-for(int i = 0; i < movimentoCimaCavalo; i++){
-  printf("Cima\n");  //imprime a direção do movimento
-}
-
-//loop while para o movimento horizontal (uma casa para esquerda)
-while (contador3 < movimentoEsquerdaCavalo)
-{
-  printf("Esquerda\n");  //imprime a direção do movimento
-  contador3++;
-}
-
+printf("MOVIMENTO DA CAVALO\n");
+moverCavalo(2, 1);
 printf("\n");
-
-
 
 
     return 0;
